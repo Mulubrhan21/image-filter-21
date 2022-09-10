@@ -1,6 +1,10 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+<<<<<<< HEAD
 import{Router, Request, Response} from 'express';
+=======
+import {Router, Request, Response} from 'express';
+>>>>>>> d3a02babb04971e781b26a1c21e878c10650234c
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
 (async () => {
@@ -30,6 +34,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
   /**************************************************************************** */
 
+<<<<<<< HEAD
   app.get('/filteredimage',async(req:Request, res:Response)=>{
     const image_url=req.query.image_url.toString();
     if(!image_url){
@@ -40,6 +45,18 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
       deleteLocalFiles([filtered_image])
     });
   });
+=======
+  app.get('/filteredimage', async (req: Request, res: Response) => {
+    const image_url = req.query.image_url.toString();
+   if (!image_url){
+     res.status(400).send('image url is required');
+   }
+   const filtered_image= await filterImageFromURL(image_url);
+   res.status(200).sendFile(filtered_image,() => {
+    deleteLocalFiles([filtered_image]);
+   });
+ });
+>>>>>>> d3a02babb04971e781b26a1c21e878c10650234c
   //! END @TODO1
   
   // Root Endpoint
